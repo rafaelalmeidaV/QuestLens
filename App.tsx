@@ -1,4 +1,4 @@
-// App.js file 
+
 
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
@@ -39,6 +39,7 @@ export default function App() {
   const [extractedText, setExtractedText] =
     useState("");
 
+  
   // Function to pick an image from the 
   // device's gallery 
   const pickImageGallery = async () => {
@@ -84,8 +85,6 @@ export default function App() {
     let myHeaders = new Headers();
     myHeaders.append(
       "apikey",
-
-      // ADDD YOUR API KEY HERE 
       "FEmvQr5uj99ZUvk3essuYb6P5lLLBS20"
     );
     myHeaders.append(
@@ -124,14 +123,14 @@ export default function App() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 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`,
+            'Authorization': `Bearer ${process.env.EXPO_PUBLIC_OPENAI_API_KEY}`,
           },
           body: JSON.stringify({
             model: 'gpt-3.5-turbo',
             messages: [
               {
                 role: 'system',
-                content: "resolva" + extractedText,
+                content: "resolva em pt-br com respostas curtas" + extractedText,
               },
             ],
           }),
